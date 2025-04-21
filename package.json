@@ -1,0 +1,53 @@
+{
+    "name": "patch-difficulty-highlighter",
+    "displayName": "Patch Difficulty Highlighter",
+    "description": "Highlights <BUGS>, <BUGE>, <FIXS>, <FIXE> tokens and provides code folding regions for patch difficulty analysis.",
+    "version": "0.0.1",
+    "publisher": "your-publisher",
+    "engines": {
+        "vscode": "^1.60.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "main": "./out/extension.js",
+    "scripts": {
+        "build": "tsc -p ./",
+        "watch": "tsc -w -p ./"
+    },
+    "activationEvents": [
+        "onLanguage:cpp",
+        "onLanguage:plaintext",
+        "onCommand:extension.analyzePatchChallenges"
+    ],
+    "contributes": {
+        "commands": [
+            {
+                "command": "extension.analyzePatchChallenges",
+                "title": "Analyze Patch Challenges",
+                "category": "Patch"
+            },
+            {
+                "command": "extension.normalizePatchTokens",
+                "title": "Normalize Patch Tokens",
+                "category": "Patch"
+            }
+        ],
+        "semanticTokenTypes": [
+            {
+                "id": "bugToken",
+                "description": "Highlight bug tokens (<BUGS>,<BUGE>)",
+                "superType": "keyword"
+            },
+            {
+                "id": "fixToken",
+                "description": "Highlight fix tokens (<FIXS>,<FIXE>)",
+                "superType": "keyword"
+            }
+        ]
+    },
+    "devDependencies": {
+        "@types/vscode": "^1.99.1",
+        "typescript": "^4.9.5"
+    }
+}
